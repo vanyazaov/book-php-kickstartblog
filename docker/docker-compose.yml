@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./php/${PHP_VERSION}/Dockerfile  # Путь зависит от выбранной версии
+    container_name: book_php_kickstartblog_app_${PHP_VERSION}
+    restart: unless-stopped
+    volumes:
+      - ./../app:/var/www/html
+    command: php -S 0.0.0.0:8000 -t /var/www/html
+    ports:
+      - "80:8000"
+    depends_on:
+      - db
+  db:
+    image: ${DB_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: kickstartblog
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: password
+    volumes:
+      - kickstartblog_db_data:/var/lib/mysql
+    restart: unless-stopped
+
+  adminer:
+    image: adminer:${ADMINER_VERSION}
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+volumes:
+  kickstartblog_db_data:
