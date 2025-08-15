@@ -13,7 +13,7 @@ class Database {
         $this->username = 'docker'; // Логин пользователя базы данных
         $this->password = 'password'; // Пароль пользователя базы данных
         $this->database = 'kickstartblog'; // Название базы данных
-        $this->db = new PDO("mysql://host=".$this->dbserver.";dbname=".$this->database, $this->username, $this->password);
+        $this->db = new PDO("mysql:host=".$this->dbserver.";dbname=".$this->database, $this->username, $this->password);
     }
     
     public function dbselect($table, $select, $where = NULL) {}
