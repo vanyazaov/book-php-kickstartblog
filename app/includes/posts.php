@@ -14,6 +14,12 @@ class Blog {
 class Posts extends Blog {
     public function __construnct() {
         parent::__construct();
+        $this->comments = new Comments();
+        if (!empty($_GET['id'])) {
+            $this->getPost($_GET['id']);
+        } else {
+            $this->getPosts();
+        }
     }
     public function getPosts() {}
     public function viewPost() {}
