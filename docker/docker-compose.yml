@@ -10,6 +10,8 @@ services:
     volumes:
       - ./../app:/var/www/html
     command: php -S 0.0.0.0:8000 -t /var/www/html
+    environment:
+      - SERVER_NAME=localhost  # или любой другой хост
     ports:
       - "80:8000"
     depends_on:
