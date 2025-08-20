@@ -8,3 +8,21 @@
 <a href="/">Главная</a> | <a href="/admin/posts.php">Админ-панель</a>
 <hr>
 <h1>Welcome to my blog's admin panel!</h1>
+<?php
+    if (!empty($_GET['delete']) && $_GET['delete'] == 'error') { 
+        echo '<p style="color: red">Удаление завершилось ошибкой.</p>';     
+    }
+    if (!empty($_GET['delete']) && $_GET['delete'] == 'success') { 
+        echo '<p style="color: green">Пост удалён.</p>';     
+    }
+    
+    if (!empty($_GET['save']) && $_GET['save'] == 'error') { 
+        echo '<p style="color: red">В процессе сохранения вашего сообщения возникла ошибка. Пожалуйста, повторите попытку позднее.</p>';     
+    }
+    if (!empty($_GET['save']) && $_GET['save'] == 'success') { 
+        echo '<p style="color: green">Ваше сообщение успешно сохранено.</p>';     
+    } 
+    if (!empty($_GET['edit']) && $_GET['edit'] == 'notfound') { 
+        echo '<p style="color: red">Пост не найден.</p>';     
+    }
+?>

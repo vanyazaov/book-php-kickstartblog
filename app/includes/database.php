@@ -12,6 +12,7 @@ class Database {
         $this->password = 'password'; // Пароль пользователя базы данных
         $this->database = 'kickstartblog'; // Название базы данных
         $this->db = new PDO("mysql:host=".$this->dbserver.";dbname=".$this->database, $this->username, $this->password);
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     
     public function dbselect($table, $select, $where = NULL) {}
