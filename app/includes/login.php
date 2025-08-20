@@ -12,15 +12,29 @@ class Login {
         $this->index();
     }
     public function index() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $error = $this->validateDetails();
-        } elseif (!empty($_GET['status']) && $_GET['status'] == 'inactive') {
-            $error = 'Сеанс завершён в связи с отсутствием активности. Пожалуйста, авторизуйтесь снова.';
+        if (!empty($_GET['status']) && $_GET['status'] == 'logout') {
+            session_unset();
+            session_destroy();
+            $error = 'Ваш сеанс завершён. Пожалуйста, авторизуйтесь снова.';
+            require_once 'admin/templates/loginform.php';
+        } elseif (!empty($_SESSION['kickstart_login']) && $_SESSION['kickstart_login']) {
+            header('Location: ' . $this->base->url . '/admin/posts.php');
+            exit();
+        } else {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $error = $this->validateDetails();
+            } elseif (!empty($_GET['status']) && $_GET['status'] == 'inactive') {
+                session_unset();
+                session_destroy();
+                $error = 'Сеанс завершён в связи с отсутствием активности. Пожалуйста, авторизуйтесь снова.';
+            }
+            require_once 'admin/templates/loginform.php';      
         }
-        require_once 'admin/templates/loginform.php';
     }
     public function loginSuccess() {
-        header('Location: http://' . $_SERVER['SERVER_NAME'] . '/admin/posts.php');
+        $_SESSION['kickstart_login'] = true;
+        $_SESSION['timeout'] = time();
+        header('Location: ' . $this->base->url . '/admin/posts.php');
         return;
     }
     public function loginFail() {
