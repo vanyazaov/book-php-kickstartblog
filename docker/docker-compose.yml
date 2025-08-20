@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./../app:/var/www/html
+      - ./php/${PHP_VERSION}/php_default.ini:/usr/local/etc/php/conf.d/default.ini
     command: php -S 0.0.0.0:8000 -t /var/www/html
     environment:
       - SERVER_NAME=localhost  # или любой другой хост
