@@ -4,7 +4,7 @@
     <div style="color: red;">~<?php echo $error; ?></div>
 <?php endif; ?>
 <br>
-<form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
     <h3>Вход в админ-панель</h3>
     <label for="inputEmail">Имя пользователя</label>
     <input type="text" name="username" id="inputEmail" placeholder="Имя пользователя" />
