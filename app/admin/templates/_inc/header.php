@@ -3,6 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <title>Админ-панель: My Blog</title>
+<link rel="stylesheet" type="text/css" href="/includes/css/markdown.css" />
+<script type="text/javascript" src="/includes/js/Markdown.Converter.js"></script>
+<script type="text/javascript" src="/includes/js/Markdown.Sanitizer.js"></script>
+<script type="text/javascript" src="/includes/js/Markdown.Editor.js"></script>
 </head>
 <body>
 <a href="/">Главная</a> | <a href="/admin/posts.php">Админ-панель</a>

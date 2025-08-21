@@ -4,7 +4,7 @@ if (isset($_ENV['SERVER_NAME'])) {
     $_SERVER['SERVER_NAME'] = $_ENV['SERVER_NAME'];
 }
 require_once ("database.php");
-
+require_once ("markdown.php");
 class Blog {
     public $ksdb = '';
     public $base = '';
@@ -30,11 +30,15 @@ class Posts extends Blog {
         $posts = $return = array();
         $template = '';
         $query = $this->ksdb->db->prepare("SELECT * FROM posts");
+        $markdown = new Michelf\Markdown();
         try {
             $query->execute();
             for ($i = 0; $row = $query->fetch(); $i++) {
                 $return[$i] = array();
                 foreach ($row as $key => $rowitem) {
+                    if ($key == 'content') {                     
+                        $rowitem = $markdown->defaultTransform($rowitem);
+                    } 
                     $return[$i][$key] = $rowitem;
                 }
             }
@@ -50,11 +54,15 @@ class Posts extends Blog {
         $posts = $return = array();
         $template = '';
         $query = $this->ksdb->db->prepare("SELECT * FROM posts WHERE id = ?");
+        $markdown = new Michelf\Markdown();
         try {
             $query->execute(array($id));
             for($i = 0; $row = $query->fetch(); $i++) {
                 $return[$i] = array();
                 foreach ($row as $key => $rowitem) {
+                    if ($key == 'content') {
+                        $rowitem = $markdown->defaultTransform($rowitem);
+                    }                   
                     $return[$i][$key] = $rowitem;
                 }
             }

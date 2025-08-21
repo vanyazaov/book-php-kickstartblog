@@ -5,8 +5,12 @@ require_once ('_inc/header.php');
 	<h3>Новое сообщение</h3>
 	<label for="title">Заголовок</label><br>
 	<input type="text" name="post[title]" id="title" placeholder="Заголовок вашего сообщения" /><br>
-	<label for="content">Сообщение</label><br>
-	<textarea name="post[content]" id="content"></textarea><br>
+	<label for="wmd-input">Сообщение</label><br>
+	<div class="wmd-panel">
+            <div id="wmd-button-bar"></div>
+            <textarea class="wmd-input" id="wmd-input" name="post[content]"></textarea>
+    </div>
+    <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
 	<button type="submit">Сохранить сообщение</button>
 </form>
 <?php

@@ -6,7 +6,7 @@ if (isset($_ENV['SERVER_NAME'])) {
     $_SERVER['SERVER_NAME'] = $_ENV['SERVER_NAME'];
 }
 require_once('database.php');
-
+require_once ("markdown.php");
 class Adminpanel {
     public function __construct() {
         $inactive = 600;
@@ -50,11 +50,15 @@ class Posts extends Adminpanel {
     public function listPosts() {
         $posts = $return = array();
         $query = $this->ksdb->db->prepare("SELECT * FROM posts");
+        $markdown = new Michelf\Markdown();
         try {
             $query->execute();
             for ($i = 0; $row = $query->fetch(); $i++) {
                 $return[$i] = array();
                 foreach ($row as $key => $rowitem) {
+                    if ($key == 'content') {                     
+                        $rowitem = $markdown->defaultTransform($rowitem);
+                    }
                     $return[$i][$key] = $rowitem;
                 }
             }
