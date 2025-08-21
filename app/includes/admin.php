@@ -93,6 +93,11 @@ class Posts extends Adminpanel {
         $array = $format = $return = array();
         if (!empty($_POST['post'])) {
             $post = $_POST['post'];
+        }               
+        if (!empty($post['title'])) {
+            $array['title'] = $post['title'];
+
+            $format[] = ':title';
         }        
         if (!empty($post['content'])) {
             $array['content'] = $post['content'];
