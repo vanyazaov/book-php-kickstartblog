@@ -9,7 +9,7 @@
 <script type="text/javascript" src="/includes/js/Markdown.Editor.js"></script>
 </head>
 <body>
-<a href="/">Главная</a> | <a href="/admin/posts.php">Админ-панель</a>
+<a href="/login.php?status=logout">Выход</a> | <a href="/">Главная</a> | <a href="/admin/posts.php">Админ-панель</a>
 <hr>
 <h1>Welcome to my blog's admin panel!</h1>
 <?php

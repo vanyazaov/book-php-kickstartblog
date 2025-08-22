@@ -185,9 +185,43 @@ class Posts extends Adminpanel {
 class Comments extends Adminpanel {
     public function __construct() {
         parent::__construct();
+        if (!empty($_GET['action']) && $_GET['action'] == 'delete') {
+            $this->deleteComment();
+        } else {
+            $this->listComments();
+        }
     }
-    public function listComments() {}
-    public function deleteComment() {}
+    public function listComments() {
+        $comments = $return = array();
+        $query = $this->ksdb->db->prepare("SELECT * FROM comments");
+        try {
+            $query->execute();
+            for ($i = 0; $row = $query->fetch(); $i++) {
+                $return[$i] = array();
+                foreach ($row as $key => $rowitem) {
+                    $return[$i][$key] = $rowitem;
+                }
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        $comments = $return;
+        require_once 'templates/managecomments.php';
+    }
+    public function deleteComment() {
+        if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
+            $query = "DELETE FROM comments WHERE id = ?";
+            $stmt = $this->ksdb->db->prepare($query);
+            $stmt->execute(array($_GET['id']));
+            $delete = $stmt->rowCount();
+            $this->ksdb = null;
+            if (!empty($delete) && $delete > 0) {
+                header("Location: " . $this->base->url . "/admin/posts.php?delete=success");
+            } else {
+                header("Location: " . $this->base->url . "/admin/posts.php?delete=error");
+            }
+        }    
+    }
 }
 
 $admin = new Adminpanel();
