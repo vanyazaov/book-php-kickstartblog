@@ -6,6 +6,7 @@ try {
 	$queryStr = "INSERT INTO users (name, password, email) VALUES ('admin', '$password', 'youremail@domain.com')";
 	$db->query($queryStr);
 	$queryStr = "INSERT INTO posts (title, content) VALUES ('Hello, World!', 'Hello!\r\nThis is my first post!');";
+	$db->query($queryStr);
 } catch (PDOException $e) {
 	echo $e->getMessage();
 }
