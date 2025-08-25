@@ -33,8 +33,11 @@ class Adminpanel {
 }
 
 class Posts extends Adminpanel {
+    public $markdown = '';
+    
     public function __construct() {
         parent::__construct();
+        $this->markdown = new Michelf\Markdown();
         if (!empty($_GET['action'])) {
             switch ($_GET['action']) {
                 case 'create': $this->addPost(); break;
@@ -49,23 +52,17 @@ class Posts extends Adminpanel {
     }
     public function listPosts() {
         $posts = $return = array();
-        $query = $this->ksdb->db->prepare("SELECT * FROM posts");
-        $markdown = new Michelf\Markdown();
-        try {
-            $query->execute();
-            for ($i = 0; $row = $query->fetch(); $i++) {
-                $return[$i] = array();
-                foreach ($row as $key => $rowitem) {
-                    if ($key == 'content') {                     
-                        $rowitem = $markdown->defaultTransform($rowitem);
-                    }
-                    $return[$i][$key] = $rowitem;
+        $return = $this->ksdb->dbselect('posts', array('*'));
+        foreach ($return as $key => $post) {
+            $posts[$i] = array();
+            foreach ($post as $key => $rowitem) {              
+                if ($key === 'content') {                     
+                    $rowitem = $this->markdown->defaultTransform($rowitem);
                 }
+                $posts[$i][$key] = $rowitem;
             }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+            $i++;        
         }
-        $posts = $return;
         require_once 'templates/manageposts.php';
     }
     public function editPosts() {
@@ -75,19 +72,7 @@ class Posts extends Adminpanel {
         $id = $_GET['id'];
         $posts = $return = array();
         $template = '';
-        $query = $this->ksdb->db->prepare("SELECT * FROM posts WHERE id = ?");
-        try {
-            $query->execute(array($id));
-            for($i = 0; $row = $query->fetch(); $i++) {
-                $return[$i] = array();
-                foreach ($row as $key => $rowitem) {
-                    $return[$i][$key] = $rowitem;
-                }
-            }
-        } catch(PDOException $e) {
-            echo $e->getMessage();
-        }
-        $posts = $return;
+        $posts = $this->ksdb->dbselect('posts', array('*'), array('id' => $id));
         include_once 'templates/editpost.php';
     }
     public function addPost() {
@@ -108,55 +93,11 @@ class Posts extends Adminpanel {
             $format[] = ':content';
         }
         if (isset($post['id']) && is_numeric($post['id']) && $post['id'] > 0) {          
-            $trigger_update = true;
+            $add  = $this->ksdb->dbupdate('posts', $array, $format, $post['id']);
         } else {
-            $trigger_update = false;
+            $add  = $this->ksdb->dbadd('posts', $array, $format);
         }
-       
-        $cols = $values = '';
-        $i = 0;
-        foreach ($array as $col => $data) {
-            if ($i == 0) {
-                if ($trigger_update) {
-                    $cols .= $col . '=' . $format[$i];
-                } else {
-                    $cols .= $col;
-                    $values .= $format[$i];
-                }
-            } else {
-                if ($trigger_update) {
-                    $cols .= ',' . $col . '=' . $format[$i];
-                } else {
-                    $cols .= ',' . $col;
-                    $values .= ',' . $format[$i];
-                }               
-            }
-            $i++;
-        }
-        try {
-            if ($trigger_update) {
-                $query = $this->ksdb->db->prepare("UPDATE posts SET $cols WHERE id = :id");
-                $array['id'] = $post['id'];
-                $format[] = ':id';
-                $i++;
-            } else {
-                $query = $this->ksdb->db->prepare("INSERT INTO posts (".$cols.") VALUES (".$values.")");
-            }          
-            for($c=0;$c<$i;$c++) {
-                $query->bindParam($format[$c], ${'var'.$c});
-            }
-            $z = 0;
-            foreach ($array as $col => $data) {
-                ${'var'.$z} = $data;
-                $z++;
-            }
-            $result = $query->execute();
-            $add = $query->rowCount();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-        $query->closeCursor();
-        $this->ksdb->db = null;
+              
         if (!empty($add)) {
             $status = array('success' => 'Ваше сообщение успешно сохранено.');
             header('Location: ' . $this->base->url . '/admin/posts.php?save=success');
@@ -168,11 +109,7 @@ class Posts extends Adminpanel {
     }
     public function deletePost() {
         if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
-            $query = "DELETE FROM `posts` WHERE id = ?";
-            $stmt = $this->ksdb->db->prepare($query);
-            $stmt->execute(array($_GET['id']));
-            $delete = $stmt->rowCount();
-            $this->ksdb->db = null;
+            $delete = $this->ksdb->dbdelete('posts', $_GET['id']);
             if (!empty($delete) && $delete > 0) {
                 header("Location: " . $this->base->url . "/admin/posts.php?delete=success");
             } else {
@@ -192,29 +129,12 @@ class Comments extends Adminpanel {
         }
     }
     public function listComments() {
-        $comments = $return = array();
-        $query = $this->ksdb->db->prepare("SELECT * FROM comments");
-        try {
-            $query->execute();
-            for ($i = 0; $row = $query->fetch(); $i++) {
-                $return[$i] = array();
-                foreach ($row as $key => $rowitem) {
-                    $return[$i][$key] = $rowitem;
-                }
-            }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-        $comments = $return;
+        $comments = $this->ksdb->dbselect('comments', array('*'));       
         require_once 'templates/managecomments.php';
     }
     public function deleteComment() {
         if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
-            $query = "DELETE FROM comments WHERE id = ?";
-            $stmt = $this->ksdb->db->prepare($query);
-            $stmt->execute(array($_GET['id']));
-            $delete = $stmt->rowCount();
-            $this->ksdb = null;
+            $delete = $this->ksdb->dbdelete('comments', $_GET['id']);
             if (!empty($delete) && $delete > 0) {
                 header("Location: " . $this->base->url . "/admin/posts.php?delete=success");
             } else {
