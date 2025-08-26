@@ -51,3 +51,23 @@
         .post-meta {
             font-size: 0.9rem;
         }
+
+
+
+pre {
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+    font-family: 'Fira Code', 'Monaco', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 24px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+pre > code {
+    color: #f8f8f2 !important;
+    background-color: transparent;
+    padding: 0;
+}
