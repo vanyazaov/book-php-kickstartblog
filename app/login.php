@@ -1,4 +1,4 @@
 <?php
 session_start();
-require_once('includes/login.php');
-$login = new Login;
+require_once('includes/Login.php');
+$login = new Login();

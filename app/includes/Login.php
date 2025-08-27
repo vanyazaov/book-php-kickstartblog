@@ -3,7 +3,7 @@
 if (isset($_ENV['SERVER_NAME'])) {
     $_SERVER['SERVER_NAME'] = $_ENV['SERVER_NAME'];
 }
-require_once('database.php');
+require_once('Database.php');
 class Login {
     public function __construct() {
         $this->ksdb = new Database;
