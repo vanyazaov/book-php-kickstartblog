@@ -2,7 +2,10 @@
 require_once('Database.php');
 require_once ("Markdown.php");
 class Adminpanel {
-    public function __construct() {
+    protected $ksdb = null;
+    protected $base = null;
+    
+    public function __construct() {        
         $inactive = 600;
         if (isset($_SESSION["kickstart_login"])) {
             $sessionTTL = time() - $_SESSION['timeout'];

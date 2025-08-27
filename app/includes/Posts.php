@@ -3,7 +3,7 @@
 require_once 'Adminpanel.php';
 
 class Posts extends Adminpanel {
-    public $markdown = '';
+    private $markdown = null;
     
     public function __construct() {
         parent::__construct();

@@ -1,10 +1,10 @@
 <?php
 class Database {
-    public $dbserver = '';
-    public $username = '';
-    public $password = '';
-    public $database = '';
-    public $db = '';
+    private $dbserver = '';
+    private $username = '';
+    private $password = '';
+    private $database = '';
+    private $db = '';
     
     public function __construct() {
         $this->dbserver = 'db'; // Хост базы данных. В рамках окружения докера сервис имеет имя "db"

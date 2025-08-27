@@ -4,8 +4,8 @@ require_once 'Blog.php';
 require_once 'CommentsBlog.php';
 
 class Posts extends Blog {
-    public $comments = '';
-    public $markdown = '';
+    private $comments = null;
+    private $markdown = null;
     
     public function __construct() {
         parent::__construct();

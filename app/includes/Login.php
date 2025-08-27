@@ -5,6 +5,9 @@ if (isset($_ENV['SERVER_NAME'])) {
 }
 require_once('Database.php');
 class Login {
+    private $ksdb = null;
+    private $base = null;
+    
     public function __construct() {
         $this->ksdb = new Database;
         $this->base = (object) '';
