@@ -1,9 +1,5 @@
 <?php
-// Принудительно переопределяем SERVER_NAME, если задан в окружении
-if (isset($_ENV['SERVER_NAME'])) {
-    $_SERVER['SERVER_NAME'] = $_ENV['SERVER_NAME'];
-}
-require_once('Database.php');
+
 class Login {
     private $ksdb = null;
     private $base = null;

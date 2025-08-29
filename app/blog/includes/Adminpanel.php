@@ -1,6 +1,5 @@
 <?php
-require_once('Database.php');
-require_once ("Markdown.php");
+
 class Adminpanel {
     protected $ksdb = null;
     protected $base = null;

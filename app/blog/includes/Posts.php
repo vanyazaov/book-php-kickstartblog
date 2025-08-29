@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Adminpanel.php';
-
 class Posts extends Adminpanel {
     private $markdown = null;
     

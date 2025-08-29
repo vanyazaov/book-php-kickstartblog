@@ -1,15 +1,12 @@
 <?php
 
-require_once 'Blog.php';
-require_once 'CommentsBlog.php';
-
-class Posts extends Blog {
+class PostsBlog extends Blog {
     private $comments = null;
     private $markdown = null;
     
-    public function __construct() {
+    public function __construct() {        
         parent::__construct();
-        $this->comments = new Comments();
+        $this->comments = new CommentsBlog();
         $this->markdown = new Michelf\Markdown();
         if (!empty($_GET['id'])) {
             $this->viewPost($_GET['id']);

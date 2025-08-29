@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Adminpanel.php';
-
 class Comments extends Adminpanel {
     public function __construct() {
         parent::__construct();
