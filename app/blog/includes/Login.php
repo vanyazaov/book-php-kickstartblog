@@ -19,9 +19,9 @@ class Login {
             session_unset();
             session_destroy();
             $error = 'Ваш сеанс завершён. Пожалуйста, авторизуйтесь снова.';
-            require_once 'admin/templates/loginform.php';
+            require_once APP_PATH . 'admin/templates/loginform.php';
         } elseif (!empty($_SESSION['kickstart_login']) && $_SESSION['kickstart_login']) {
-            header('Location: ' . $this->base->url . '/admin/posts.php');
+            header('Location: ' . $this->base->url . '/admin/posts');
             exit();
         } else {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,13 +31,13 @@ class Login {
                 session_destroy();
                 $error = 'Сеанс завершён в связи с отсутствием активности. Пожалуйста, авторизуйтесь снова.';
             }
-            require_once 'admin/templates/loginform.php';      
+            require_once APP_PATH . 'admin/templates/loginform.php';      
         }
     }
     public function loginSuccess() {
         $_SESSION['kickstart_login'] = true;
         $_SESSION['timeout'] = time();
-        header('Location: ' . $this->base->url . '/admin/posts.php');
+        header('Location: ' . $this->base->url . '/admin/posts');
         return;
     }
     public function loginFail() {

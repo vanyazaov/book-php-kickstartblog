@@ -8,7 +8,7 @@ require_once ('_inc/header.php');
         <h1 class="h3 mb-1">Управление постами</h1>
         <p class="mb-0">Создание, редактирование и удаление записей блога</p>
     </div>
-    <a class="btn btn-admin" href="<?php echo $this->base->url;?>/admin/posts.php?action=create">
+    <a class="btn btn-admin" href="<?php echo $this->base->url;?>/admin/posts?action=create">
         <i class="bi bi-plus-circle me-2"></i>Создать пост
     </a>
 </div>
@@ -38,10 +38,10 @@ require_once ('_inc/header.php');
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-sm btn-edit" href="<?php echo $this->base->url . "/admin/posts.php?id=".$post['id']."&action=edit"?>">
+                                        <a class="btn btn-sm btn-edit" href="<?php echo $this->base->url . "/admin/posts?id=".$post['id']."&action=edit"?>">
                                             Править
                                         </a>
-                                        <a class="btn btn-sm btn-delete" href="<?php echo $this->base->url . "/admin/posts.php?id=".$post['id']."&action=delete"?>" onclick="return confirm('Вы хотите удалить?')">
+                                        <a class="btn btn-sm btn-delete" href="<?php echo $this->base->url . "/admin/posts?id=".$post['id']."&action=delete"?>" onclick="return confirm('Вы хотите удалить?')">
                                             Удалить
                                         </a>
                                     </div>

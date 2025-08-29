@@ -5,5 +5,5 @@ session_start();
 if (isset($_ENV['SERVER_NAME'])) {
     $_SERVER['SERVER_NAME'] = $_ENV['SERVER_NAME'];
 }
-require_once('../includes/Posts.php');
-$blog = new Posts();
+require_once(APP_PATH . 'includes/Comments.php');
+$comments = new Comments();

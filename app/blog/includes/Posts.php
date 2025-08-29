@@ -33,20 +33,20 @@ class Posts extends Adminpanel {
             }
             $i++;        
         }
-        require_once 'templates/manageposts.php';
+        require_once APP_PATH . 'admin/templates/manageposts.php';
     }
     public function editPosts() {
         if (empty($_GET['id']) || !is_numeric($_GET['id'])) {
-            header('Location: ' . $this->base->url . '/admin/posts.php?edit=notfound');
+            header('Location: ' . $this->base->url . '/admin/posts?edit=notfound');
         }
         $id = $_GET['id'];
         $posts = $return = array();
         $template = '';
         $posts = $this->ksdb->dbselect('posts', array('*'), array('id' => $id));
-        include_once 'templates/editpost.php';
+        include_once APP_PATH . 'admin/templates/editpost.php';
     }
     public function addPost() {
-        require_once 'templates/newpost.php';
+        require_once APP_PATH . 'admin/templates/newpost.php';
     }
     public function savePost() {
         $array = $format = $return = array();
@@ -70,10 +70,10 @@ class Posts extends Adminpanel {
               
         if (!empty($add)) {
             $status = array('success' => 'Ваше сообщение успешно сохранено.');
-            header('Location: ' . $this->base->url . '/admin/posts.php?save=success');
+            header('Location: ' . $this->base->url . '/admin/posts?save=success');
         } else {
             $status = array('error' => 'В процессе сохранения вашего сообщения возникла ошибка. Пожалуйста, повторите попытку позднее.');
-            header('Location: ' . $this->base->url . '/admin/posts.php?save=error');
+            header('Location: ' . $this->base->url . '/admin/posts?save=error');
         }
         
     }
@@ -81,9 +81,9 @@ class Posts extends Adminpanel {
         if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
             $delete = $this->ksdb->dbdelete('posts', $_GET['id']);
             if (!empty($delete) && $delete > 0) {
-                header("Location: " . $this->base->url . "/admin/posts.php?delete=success");
+                header("Location: " . $this->base->url . "/admin/posts?delete=success");
             } else {
-                header("Location: " . $this->base->url . "/admin/posts.php?delete=error");
+                header("Location: " . $this->base->url . "/admin/posts?delete=error");
             }
         }
     }

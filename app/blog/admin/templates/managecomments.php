@@ -27,7 +27,7 @@ require_once ('_inc/header.php');
                         <td class="fw-bold"><?php echo htmlspecialchars($comment['name']); ?></th>
                         <td class="fw-bold"><?php echo htmlspecialchars($comment['email']); ?></th>
                         <td class="content-preview"><p><?php echo strip_tags($comment['comment']); ?></p></td>
-                        <td><a class="btn btn-sm btn-delete" href="<?php echo $this->base->url . "/admin/comments.php?id=".htmlspecialchars($comment['id'])."&action=delete"?>" onclick="return confirm('Вы хотите удалить?')">Удалить комментарий</a></td>
+                        <td><a class="btn btn-sm btn-delete" href="<?php echo $this->base->url . "/admin/comments?id=".htmlspecialchars($comment['id'])."&action=delete"?>" onclick="return confirm('Вы хотите удалить?')">Удалить комментарий</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

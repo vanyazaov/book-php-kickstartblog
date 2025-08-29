@@ -14,7 +14,7 @@
                         <?php echo $error; ?>
                     </div>
                 <?php endif; ?>
-                <form id="loginForm" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+                <form id="loginForm" action="/login" method="post">
                     <div class="mb-3">
                         <label for="inputEmail" class="form-label">Имя пользователя</label>
                         <div class="input-group">

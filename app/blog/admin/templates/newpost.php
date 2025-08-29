@@ -6,7 +6,7 @@ require_once ('_inc/header.php');
     <div class="row">
         <div class="col-12">
             <div class="editor-card">
-            <form action="<?php echo $this->base->url.'/admin/posts.php?action=save'; ?>" method="POST">
+            <form action="<?php echo $this->base->url.'/admin/posts?action=save'; ?>" method="POST">
                 <div class="editor-header">
                     <h2><i class="bi bi-pencil-square me-2"></i>Редактор поста</h2>
                     <p class="mb-0">Новое сообщение</p>

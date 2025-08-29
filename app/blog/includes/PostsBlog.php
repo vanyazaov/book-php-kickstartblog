@@ -36,7 +36,7 @@ class Posts extends Blog {
             $i++;        
         }
         $template = 'list-posts.php';
-        include_once 'frontend/templates/' . $template;
+        include_once APP_PATH . 'frontend/templates/' . $template;
     }
     public function viewPost($postId) {
         $posts = array();
@@ -45,6 +45,6 @@ class Posts extends Blog {
         $posts[0]['content'] = $this->markdown->defaultTransform($posts[0]['content']);
         $postcomments = $this->comments->getComments($postId);
         $template = 'view-post.php';
-        include_once 'frontend/templates/' . $template;
+        include_once APP_PATH . 'frontend/templates/' . $template;
     }
 }

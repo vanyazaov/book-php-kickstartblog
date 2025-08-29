@@ -12,7 +12,7 @@ class Adminpanel {
             if ($sessionTTL > $inactive) {
                 session_unset();
                 session_destroy();
-                header('Location: http://' . $_SERVER['SERVER_NAME'] . '/login.php?status=inactive');
+                header('Location: http://' . $_SERVER['SERVER_NAME'] . '/login?status=inactive');
             }
         }
         $_SESSION['timeout'] = time();
@@ -20,7 +20,7 @@ class Adminpanel {
         if (empty($login)) {
             session_unset();
             session_destroy();
-            header('Location: http://' . $_SERVER['SERVER_NAME'] . '/login.php?status=logout');
+            header('Location: http://' . $_SERVER['SERVER_NAME'] . '/login?status=logout');
         } else {
             $this->ksdb = new Database;
             $this->base = (object) '';

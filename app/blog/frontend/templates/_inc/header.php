@@ -7,7 +7,7 @@
     <title>Мой блог</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/includes/css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 <body>
     <!-- Верхнее меню -->
@@ -24,11 +24,11 @@
                     </li>
                     <?php if (!empty($_SESSION['kickstart_login']) && $_SESSION['kickstart_login']): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Админ-панель</a>
+                        <a class="nav-link" href="login">Админ-панель</a>
                     </li>
                     <?php else: ?>                   
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Вход в админку</a>
+                        <a class="nav-link" href="login">Вход в админку</a>
                     </li>
                     <?php endif; ?>
                 </ul>

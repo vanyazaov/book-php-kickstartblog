@@ -1,4 +1,4 @@
-<?php header("Content-Type: text/html;charset=utf-8");?>
+<?php header("Content-Type: text/html;charset=utf-8"); ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,17 +10,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/includes/css/adminpanel.css">
-    <link rel="stylesheet" href="/includes/css/markdown.css" />
-    <script type="text/javascript" src="/includes/js/Markdown.Converter.js"></script>
-    <script type="text/javascript" src="/includes/js/Markdown.Sanitizer.js"></script>
-    <script type="text/javascript" src="/includes/js/Markdown.Editor.js"></script>
+    <link rel="stylesheet" href="/css/adminpanel.css">
+    <link rel="stylesheet" href="/css/markdown.css" />
+    <script type="text/javascript" src="/js/Markdown.Converter.js"></script>
+    <script type="text/javascript" src="/js/Markdown.Sanitizer.js"></script>
+    <script type="text/javascript" src="/js/Markdown.Editor.js"></script>
 </head>
 <body>
     <!-- Фиксированное верхнее меню для админ-панели -->
     <nav class="navbar navbar-expand-lg navbar-dark admin-navbar fixed-top">
         <div class="container">
-            <a class="navbar-brand admin-brand" href="/admin/posts.php">
+            <a class="navbar-brand admin-brand" href="/admin/posts">
                 <i class="bi bi-speedometer2 me-2"></i>Админ-панель
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -33,13 +33,13 @@
                     </li>
                     <?php if (!empty($_SESSION['kickstart_login']) && $_SESSION['kickstart_login']): ?>
                     <li class="nav-item">
-                        <a class="nav-link <? echo $_SERVER['SCRIPT_NAME'] === '/admin/posts.php' ? 'active' : '' ?>" href="/admin/posts.php"><i class="bi bi-file-post me-1"></i> Посты</a>
+                        <a class="nav-link <? echo $_SERVER['route'] === 'admin/posts' ? 'active' : '' ?>" href="/admin/posts"><i class="bi bi-file-post me-1"></i> Посты</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <? echo $_SERVER['SCRIPT_NAME'] === '/admin/comments.php' ? 'active' : '' ?>" href="/admin/comments.php"><i class="bi bi-chat-dots me-1"></i> Комментарии</a>
+                        <a class="nav-link <? echo $_SERVER['route'] === 'admin/comments' ? 'active' : '' ?>" href="/admin/comments"><i class="bi bi-chat-dots me-1"></i> Комментарии</a>
                     </li>                  
                     <li class="nav-item">
-                        <a class="nav-link" href="/login.php?status=logout"><i class="bi bi-box-arrow-right me-1"></i> Выйти</a>
+                        <a class="nav-link" href="/login?status=logout"><i class="bi bi-box-arrow-right me-1"></i> Выйти</a>
                     </li>
                     <?php endif; ?>
                 </ul>

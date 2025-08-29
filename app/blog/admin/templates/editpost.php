@@ -6,7 +6,7 @@ require_once ('_inc/header.php');
     <div class="row">
         <div class="col-12">
             <div class="editor-card">
-            <form action="<?php echo $this->base->url.'/admin/posts.php?action=save'; ?>" method="POST">
+            <form action="<?php echo $this->base->url.'/admin/posts?action=save'; ?>" method="POST">
              <?php foreach($posts as $post): ?>
                 <input type="hidden" name="post[id]" value="<?php echo htmlspecialchars($post['id']); ?>" />
                 <div class="editor-header">

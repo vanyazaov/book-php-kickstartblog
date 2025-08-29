@@ -62,7 +62,7 @@
                 Ваш комментарий успешно сохранен.
             </div>
         <?php endif; ?>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <form action="/" method="post">
             <input type="hidden" name="comment[postid]" value="<?php echo $_GET['id'];?>" />
             <div class="row mb-3">
                 <div class="col-md-6">
