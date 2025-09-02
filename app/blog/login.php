@@ -1,2 +1,2 @@
 <?php
-$login = new Login();
+$login = new App\Login();

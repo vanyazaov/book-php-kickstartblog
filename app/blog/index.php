@@ -1,2 +1,3 @@
 <?php
-$blog = new PostsBlog();
+
+$blog = new App\User\Posts();

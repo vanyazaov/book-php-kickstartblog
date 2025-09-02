@@ -1,2 +1,2 @@
 <?php
-$comments = new Comments();
+$comments = new App\Adminpanel\Comments();

@@ -1,4 +1,5 @@
 <?php
+namespace App;
 
 class Login {
     private $ksdb = null;

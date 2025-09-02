@@ -1,4 +1,5 @@
 <?php
+namespace App\Adminpanel;
 
 class Comments extends Adminpanel {
     public function __construct() {

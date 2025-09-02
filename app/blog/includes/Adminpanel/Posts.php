@@ -1,11 +1,14 @@
 <?php
+namespace App\Adminpanel;
+
+use Michelf\Markdown;
 
 class Posts extends Adminpanel {
     private $markdown = null;
     
     public function __construct() {
         parent::__construct();
-        $this->markdown = new Michelf\Markdown();
+        $this->markdown = new Markdown();
         if (!empty($_GET['action'])) {
             switch ($_GET['action']) {
                 case 'create': $this->addPost(); break;

@@ -1,2 +1,2 @@
 <?php
-$blog = new Posts();
+$blog = new App\Adminpanel\Posts();

@@ -1,13 +1,16 @@
 <?php
+namespace App\User;
 
-class PostsBlog extends Blog {
+use Michelf\Markdown;
+
+class Posts extends Blog {
     private $comments = null;
     private $markdown = null;
     
     public function __construct() {        
         parent::__construct();
-        $this->comments = new CommentsBlog();
-        $this->markdown = new Michelf\Markdown();
+        $this->comments = new Comments();
+        $this->markdown = new Markdown();
         if (!empty($_GET['id'])) {
             $this->viewPost($_GET['id']);
         } else {

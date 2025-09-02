@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Adminpanel;
+
+use App\Database;
+
 class Adminpanel {
     protected $ksdb = null;
     protected $base = null;
@@ -21,7 +25,7 @@ class Adminpanel {
             session_destroy();
             header('Location: http://' . $_SERVER['SERVER_NAME'] . '/login?status=logout');
         } else {
-            $this->ksdb = new Database;
+            $this->ksdb = new Database();
             $this->base = (object) '';
             $this->base->url = 'http://' . $_SERVER['SERVER_NAME'];        
         }
