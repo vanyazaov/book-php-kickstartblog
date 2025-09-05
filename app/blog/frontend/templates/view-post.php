@@ -10,7 +10,7 @@
         <!-- Пост -->
                 <article class="card shadow-sm">
                     <div class="card-body p-5">
-                        <h1 class="card-title mb-3"><?php echo (!empty($post['title']) ? htmlspecialchars($post['title']) : 'Сообщение №' . htmlspecialchars($post['id'])); ?></h1>
+                        <h1 class="card-title mb-3"><?php echo (!empty($post['title']) ? e($post['title']) : 'Сообщение №' . e($post['id'])); ?></h1>
                         <div class="post-meta d-flex align-items-center mb-4 text-muted">
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-chat-dots me-2"></i>
@@ -41,9 +41,9 @@
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <div class="d-flex align-items-center mb-2">
-                        <h5 class="mb-0 me-2"><?php echo htmlspecialchars($comment['name']); ?></h5>
+                        <h5 class="mb-0 me-2"><?php echo e($comment['name']); ?></h5>
                     </div>
-                    <p class="mb-0"><?php echo htmlspecialchars($comment['comment']); ?></p>
+                    <p class="mb-0"><?php echo e($comment['comment']); ?></p>
                 </div>
             </div>
         </div>

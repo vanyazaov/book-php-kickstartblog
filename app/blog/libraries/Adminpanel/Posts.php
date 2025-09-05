@@ -1,5 +1,5 @@
 <?php
-namespace App\Adminpanel;
+namespace Adminpanel;
 
 use Michelf\Markdown;
 

@@ -29,7 +29,7 @@ require_once ('_inc/header.php');
                             <!-- Пост 1 -->
                             <tr>
                                 <td>
-                                    <div class="fw-bold"><?php echo (!empty($post['title']) ? htmlspecialchars($post['title']) : 'Сообщение №' . htmlspecialchars($post['id'])); ?></div>
+                                    <div class="fw-bold"><?php echo (!empty($post['title']) ? e($post['title']) : 'Сообщение №' . e($post['id'])); ?></div>
                                 </td>
                                 <td>
                                     <div class="content-preview">

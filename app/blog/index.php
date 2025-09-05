@@ -1,3 +1,3 @@
 <?php
 
-$blog = new App\User\Posts();
+$blog = new User\Posts();

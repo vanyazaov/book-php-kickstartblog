@@ -1,5 +1,5 @@
 <?php
-namespace App\User;
+namespace User;
 
 class Comments extends Blog {
     public function __construct() {

@@ -24,10 +24,10 @@ require_once ('_inc/header.php');
                 <tbody>
                     <?php foreach ($comments as $comment): ?>
                     <tr>
-                        <td class="fw-bold"><?php echo htmlspecialchars($comment['name']); ?></th>
-                        <td class="fw-bold"><?php echo htmlspecialchars($comment['email']); ?></th>
-                        <td class="content-preview"><p><?php echo strip_tags($comment['comment']); ?></p></td>
-                        <td><a class="btn btn-sm btn-delete" href="<?php echo $this->base->url . "/admin/comments?id=".htmlspecialchars($comment['id'])."&action=delete"?>" onclick="return confirm('Вы хотите удалить?')">Удалить комментарий</a></td>
+                        <td class="fw-bold"><?php echo e($comment['name']); ?></th>
+                        <td class="fw-bold"><?php echo e($comment['email']); ?></th>
+                        <td class="content-preview"><p><?php echo e($comment['comment']); ?></p></td>
+                        <td><a class="btn btn-sm btn-delete" href="<?php echo $this->base->url . "/admin/comments?id=".e($comment['id'])."&action=delete"?>" onclick="return confirm('Вы хотите удалить?')">Удалить комментарий</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

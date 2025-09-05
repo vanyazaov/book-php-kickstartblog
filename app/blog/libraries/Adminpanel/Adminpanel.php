@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Adminpanel;
+namespace Adminpanel;
 
-use App\Database;
+use Database;
 
 class Adminpanel {
     protected $ksdb = null;

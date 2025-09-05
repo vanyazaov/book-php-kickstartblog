@@ -1,5 +1,5 @@
 <?php
-namespace App\User;
+namespace User;
 
 use Michelf\Markdown;
 

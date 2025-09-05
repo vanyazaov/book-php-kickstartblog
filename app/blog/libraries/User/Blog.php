@@ -1,7 +1,7 @@
 <?php
-namespace App\User;
+namespace User;
 
-use App\Database;
+use Database;
 
 class Blog {
     protected $ksdb = '';
