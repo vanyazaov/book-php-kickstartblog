@@ -18,7 +18,7 @@ class Posts extends Blog {
         }
     }
     public function getPosts() {
-        $id = 0;
+        $i = 0;
         $posts = $return = array();
         $template = '';
         $return = $this->ksdb->dbselect('posts', array('*'));

@@ -22,6 +22,7 @@ class Posts extends Adminpanel {
         }      
     }
     public function listPosts() {
+        $i = 0;
         $posts = $return = array();
         $return = $this->ksdb->dbselect('posts', array('*'));
         foreach ($return as $key => $post) {
