@@ -10,5 +10,11 @@ require SYS_PATH.'autoloader'.EXT;
 // Регистрируем метод «load» автозагрузчика в стеке автозагрузчика.
 spl_autoload_register(array('Core\\Autoloader', 'load'));
 
+// Карта классов для мгновенного разрешения имён в пути.
+// Поддерживает добавление пользовательских сопоставлений.
+Autoloader::$mappings = array(
+	'Core\\Error' => SYS_PATH.'error'.EXT,
+);
+
 // Регистрируем псевдонимы для системных классов, чтобы упросить их использование в проекте
 Autoloader::$aliases = array('Autoloader' => 'Core\\Autoloader');

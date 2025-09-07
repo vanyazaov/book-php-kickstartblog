@@ -11,6 +11,12 @@ defined('APP_PATH') or die('No direct script access.');
 class Autoloader
 {
 	/**
+	 * Массив сопоставлений имён классов файлам.
+	 *
+	 * @var array
+	 */
+	public static $mappings = array();
+	/**
 	 * Массив псевдонимов для классов зарегистрированные в автозагрузке
 	 *
 	 * @var array
@@ -38,6 +44,13 @@ class Autoloader
 			class_alias(static::$aliases[$class], $class);
 			return; // Выходим, так как алиас создан - дальнейшая загрузка не нужна
 		}
+		// Все классы в движке заданы статически. Никакого сложного поиска
+        // по каталогам. Просто массив с соответствием классов и файлов
+        // для максимально быстрой загрузки.
+        elseif (isset(static::$mappings[$class]))
+        {
+	        require static::$mappings[$class];
+        }
 		
         static::load_psr($class);
     }
